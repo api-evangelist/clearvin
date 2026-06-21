@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ClearVIN
+providerId: clearvin
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- VIN
+- Vehicle History
+- Automotive
+- NMVTIS
+- Vehicle Data
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  ClearVIN's vendor API does not publish explicit numeric request-rate limits.
+  Access is gated by authentication and account state rather than per-minute
+  throttles: requests must originate from an IP address registered with
+  ClearVIN, bearer tokens issued at /rest/vendor/login expire after 120 minutes
+  and must be refreshed, and consumption is bounded by the account's prepaid
+  report credits / package balance. Specific RPM / RPD ceilings are not
+  documented and are not reconciled in this artifact.
+notes: >-
+  No numeric rate limits are published on ClearVIN's API subscriber pages.
+  Confirm any per-account or per-IP throttling, concurrency, and quota values
+  with ClearVIN during onboarding / reconciliation.
+sources:
+- https://www.clearvin.com/en/api-subscribers/
+- https://www.clearvin.com/en/api-subscribers/vin-decode-api/
+- https://www.clearvin.com/en/api-subscribers/nmvtis-history-api/
+responseCodes:
+  throttled: see provider documentation
+limits:
+- name: Registered IP Allowlist
+  scope: account
+  metric: source_ip
+  limit: requests must originate from a registered IP address
+  notes: API requests are rejected when not sent from an IP registered with ClearVIN.
+- name: Token Lifetime
+  scope: account
+  metric: token
+  limit: 120 minutes
+  notes: Bearer tokens from /rest/vendor/login expire after 120 minutes and must be re-issued.
+- name: Credit / Package Balance
+  scope: account
+  metric: credits
+  limit: bounded by prepaid report credits / package balance
+  notes: Report retrieval consumes account credits; throughput is bounded by remaining balance.
+- name: Request Rate (RPM / RPD)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No numeric per-minute / per-day request rate is published; verify with ClearVIN.
+policies:
+- name: IP Registration
+  description: Production API access requires pre-registering originating IP addresses with ClearVIN.
+- name: Token Refresh
+  description: Clients must re-authenticate at /rest/vendor/login when the 120-minute token expires.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

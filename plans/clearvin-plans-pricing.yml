@@ -1,0 +1,152 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ClearVIN
+providerId: clearvin
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- VIN
+- Vehicle History
+- Automotive
+- NMVTIS
+- Vehicle Data
+- Plans
+description: >-
+  ClearVIN sells vehicle history reports on a per-report and credit / package
+  basis rather than per-API-call metering. Consumer reports are priced per
+  report with multi-report packs lowering the unit cost, and an unlimited
+  monthly subscription is available. Business and dealer programs offer
+  discounted per-report bulk pricing with no volume commitment. Credits are a
+  prepaid virtual currency tied to the account balance, do not expire, and are
+  spent against valid VIN lookups - including via the vendor API. Exact API
+  subscriber pricing is negotiated on signup and is not published; the rates
+  below are representative public consumer and dealer prices and require
+  reconciliation for API contracts.
+notes: >-
+  Per-report and subscription prices are taken from public ClearVIN consumer
+  and dealer pages and may change; API subscriber / vendor pricing is quoted on
+  registration and is not publicly listed. Verify on reconciliation.
+sources:
+- https://www.clearvin.com/en/api-subscribers/
+- https://www.clearvin.com/en/unlimited-package/
+- https://www.clearvin.com/en/dealer/pricing/
+plans:
+- id: clearvin-single-report
+  name: Single Report
+  type: usage
+  description: >-
+    Pay-per-report vehicle history lookup by VIN, with lower unit prices on
+    multi-report packs.
+  entries:
+  - label: Single Report
+    name: single_report
+    type: usage
+    metric: reports
+    limit: -1
+    timeFrame: usage
+    geo: north-america
+    unit: 1
+    price: $17.99 per report
+    userMultiplied: false
+  - label: Multi-Report Pack
+    name: report_pack
+    type: usage
+    metric: reports
+    limit: -1
+    timeFrame: usage
+    geo: north-america
+    unit: 1
+    price: as low as ~$5.80 per report in multi-packs (e.g. 5 reports for $28.99)
+    userMultiplied: false
+  elements:
+  - name: VIN Decode
+  - name: Vehicle History Report
+- id: clearvin-unlimited
+  name: Unlimited Monthly Package
+  type: subscription
+  description: >-
+    Monthly subscription bundling a fixed allotment of detailed vehicle history
+    reports.
+  entries:
+  - label: Unlimited Package
+    name: unlimited_monthly
+    type: recurring
+    metric: reports
+    limit: 150
+    timeFrame: month
+    geo: north-america
+    unit: 1
+    price: $79.99 per month (up to 150 reports)
+    userMultiplied: false
+  elements:
+  - name: Vehicle History Report
+- id: clearvin-dealer
+  name: Dealer / Business Program
+  type: usage
+  description: >-
+    Discounted bulk per-report pricing for dealers and businesses with no
+    volume commitment; cancel anytime.
+  entries:
+  - label: Dealer Report
+    name: dealer_report
+    type: usage
+    metric: reports
+    limit: -1
+    timeFrame: usage
+    geo: north-america
+    unit: 1
+    price: from $2.50 per report
+    userMultiplied: false
+  elements:
+  - name: VIN Decode
+  - name: Vehicle History Report
+  - name: Bulk Access
+- id: clearvin-credits
+  name: Report Credits
+  type: usage
+  description: >-
+    Prepaid virtual currency tied to the account balance. Credits are purchased
+    in packages or via promo codes, never expire, and are spent against valid
+    VIN lookups including through the vendor API.
+  entries:
+  - label: Report Credit
+    name: report_credit
+    type: prepaid
+    metric: credits
+    limit: -1
+    timeFrame: usage
+    geo: north-america
+    unit: 1
+    price: purchased in packages; 1 credit per report; never expire
+    userMultiplied: false
+  elements:
+  - name: VIN Decode
+  - name: Vehicle History Report
+- id: clearvin-api-subscriber
+  name: API Subscriber / Vendor
+  type: enterprise
+  description: >-
+    Vendor API access to the VIN decode, NMVTIS history, valuation, and auction
+    data products. Pricing is quoted on registration and is not publicly
+    listed; requests must come from a registered IP address.
+  entries:
+  - label: Vendor API Agreement
+    name: vendor_api
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: usage
+    geo: north-america
+    unit: 1
+    price: contact ClearVIN / quoted on signup
+    userMultiplied: false
+  elements:
+  - name: VIN Decode API
+  - name: NMVTIS History API
+  - name: Valuation Data API
+  - name: Auction History API
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

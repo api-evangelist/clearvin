@@ -1,0 +1,96 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: ClearVIN
+providerId: clearvin
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- VIN
+- Vehicle History
+- Automotive
+- NMVTIS
+- Vehicle Data
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of ClearVIN spend. ClearVIN bills per vehicle report rather than
+  per API call: each VIN lookup consumes one prepaid report credit / package
+  unit drawn from the account balance, with consumer per-report, multi-pack,
+  and unlimited-subscription tiers and discounted dealer / vendor bulk pricing.
+  Credits do not expire. The primary cost driver is reports pulled; optimization
+  centers on pack / subscription selection, deduplicating repeat VIN lookups,
+  and matching report depth (decode vs. full history vs. valuation) to need.
+notes: >-
+  Vendor API pricing is quoted on signup and not publicly listed; per-report
+  and subscription figures are representative public prices. Verify billing
+  currency, invoicing cadence, and unit rates with ClearVIN on reconciliation.
+sources:
+- https://www.clearvin.com/en/api-subscribers/
+- https://www.clearvin.com/en/dealer/pricing/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: ClearVIN
+serviceCategory: Data and Analytics
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Prepaid
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+focusColumns:
+  ServiceName: ClearVIN Vendor API
+  ServiceCategory: Data and Analytics
+  ProviderName: ClearVIN
+  PublisherName: ClearVIN
+  InvoiceIssuerName: ClearVIN
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: reports
+  description: Vehicle reports retrieved by VIN; each report consumes one credit / package unit.
+  unit: reports
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+- name: credits_purchased
+  description: Prepaid report credits purchased into the account balance.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+- name: credits_consumed
+  description: Report credits spent against VIN lookups.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+- name: subscription_reports
+  description: Reports drawn against a monthly unlimited / package subscription allotment.
+  unit: reports
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track report pulls and credit burn against the account balance per product (decode, history, valuation).
+- name: Allocation
+  description: Tag report requests to teams / workflows; map credit spend to internal cost centers.
+- name: Optimization
+  description: Choose multi-packs, the unlimited subscription, or dealer pricing to lower per-report cost; deduplicate repeat VIN lookups; request only the report depth needed.
+- name: Accountability
+  description: Assign an owner for credit replenishment; review monthly report volume against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

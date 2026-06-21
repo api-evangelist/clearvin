@@ -1,0 +1,64 @@
+aid: clearvin
+name: ClearVIN
+review:
+  question: Does ClearVIN expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. ClearVIN's documented vendor API is a
+    synchronous REST surface with no streaming, Server-Sent Events, or
+    WebSocket transport. There is no event-driven or realtime surface to model.
+findings:
+  summary: |
+    ClearVIN does not publish a documented public WebSocket API. The vendor API
+    is a synchronous HTTPS REST interface under https://www.clearvin.com with
+    two documented endpoints: POST /rest/vendor/login to exchange account
+    credentials for a 120-minute JWT bearer token, and GET /rest/vendor/report
+    to retrieve a vehicle report by VIN (JSON by default, HTML when
+    format=html). A single report endpoint serves VIN decode, NMVTIS title /
+    history, and valuation data depending on the account subscription. Access
+    requires a registered originating IP address. No realtime, bidirectional,
+    SSE, or audio streaming surface (ws:// or wss://) is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://www.clearvin.com
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented on any ClearVIN API subscriber page as of the review date.
+  endpointsConfirmedRest:
+    - POST https://www.clearvin.com/rest/vendor/login
+    - GET  https://www.clearvin.com/rest/vendor/report
+  reconciliationNotes: |
+    The catalog models four product-facing APIs (VIN Decode, Vehicle History
+    Report, Report Preview, Account Authentication). In practice these are
+    served by the two documented endpoints above; product differentiation
+    happens via subscription entitlement on the shared report endpoint and the
+    format query parameter. No separate "preview", "balance", or "account"
+    REST path is documented; account credit balance is managed in the ClearVIN
+    account UI. Those API entries and their pricing are marked reconciled:false
+    pending confirmation against a live vendor account.
+sources:
+  - url: https://www.clearvin.com/en/api-subscribers/
+    type: Documentation
+    note: API subscriber overview; lists VIN Decode, NMVTIS, Valuation, and Auction data products.
+  - url: https://www.clearvin.com/en/api-subscribers/vin-decode-api/
+    type: Documentation
+    note: Documents POST /rest/vendor/login (JWT, 120 min) and GET /rest/vendor/report?vin=; Bearer auth; registered IP requirement.
+  - url: https://www.clearvin.com/en/api-subscribers/nmvtis-history-api/
+    type: Documentation
+    note: Same login + report endpoints; report returns NMVTIS title / junk / salvage / insurance / odometer data.
+  - url: https://www.clearvin.com/en/api-subscribers/valuation-data-api/
+    type: Documentation
+    note: Same login + report endpoints; report returns wholesale / retail / trade-in valuation. No WebSocket mentioned.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or event-driven protocol surface exists, so no AsyncAPI
+    document was authored. The OpenAPI 3.0.1 description was authored for the
+    two documented REST endpoints with JWT bearer security.

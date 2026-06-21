@@ -1,0 +1,122 @@
+aid: clearvin
+url: https://raw.githubusercontent.com/api-evangelist/clearvin/refs/heads/main/apis.yml
+name: ClearVIN
+kind: company
+description: ClearVIN is a vehicle-history and VIN data provider and an approved NMVTIS
+  data provider. Its REST API decodes North American (U.S. and Canada) VINs into 100+
+  specification data points and returns full vehicle history reports - title, junk
+  / salvage / total-loss records, odometer events, and market valuation - sourced
+  directly from government and industry data, covering model years 1981 to present.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- VIN
+- Vehicle History
+- Automotive
+- NMVTIS
+- Vehicle Data
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: clearvin:vin-decode-api
+  name: VIN Decode API
+  tags:
+  - VIN
+  - Decode
+  - Vehicle Specifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.clearvin.com/en/api-subscribers/vin-decode-api/
+  baseURL: https://www.clearvin.com/rest/vendor
+  properties:
+  - url: https://www.clearvin.com/en/api-subscribers/vin-decode-api/
+    type: Documentation
+  - url: openapi/clearvin-openapi.yml
+    type: OpenAPI
+  - url: collections/clearvin.postman_collection.json
+    type: PostmanCollection
+  - url: collections/clearvin.opencollection.json
+    type: OpenCollection
+  description: Breaks a North American VIN into 100+ data points - year, make, model,
+    trim, engine, technical VIN specs, standard features, and recall data - via ClearVIN's
+    proprietary decoder over the shared report endpoint.
+- aid: clearvin:vehicle-history-report-api
+  name: Vehicle History Report API
+  tags:
+  - Vehicle History
+  - NMVTIS
+  - Title
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.clearvin.com/en/api-subscribers/nmvtis-history-api/
+  baseURL: https://www.clearvin.com/rest/vendor
+  properties:
+  - url: https://www.clearvin.com/en/api-subscribers/nmvtis-history-api/
+    type: Documentation
+  - url: openapi/clearvin-openapi.yml
+    type: OpenAPI
+  - url: collections/clearvin.postman_collection.json
+    type: PostmanCollection
+  - url: collections/clearvin.opencollection.json
+    type: OpenCollection
+  description: Full vehicle history report from the NMVTIS government database and
+    industry sources - DMV title records, brand codes, junk / salvage / total-loss
+    events, insurance claims, odometer / mileage history, and market valuation - returned
+    by VIN from the report endpoint as JSON or HTML.
+- aid: clearvin:report-preview-api
+  name: Report Preview API
+  tags:
+  - Preview
+  - Sample
+  - Report
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.clearvin.com/en/api-subscribers/
+  baseURL: https://www.clearvin.com/rest/vendor
+  properties:
+  - url: https://www.clearvin.com/en/api-subscribers/
+    type: Documentation
+  - url: openapi/clearvin-openapi.yml
+    type: OpenAPI
+  - url: collections/clearvin.postman_collection.json
+    type: PostmanCollection
+  - url: collections/clearvin.opencollection.json
+    type: OpenCollection
+  description: Retrieves a report by VIN with the format query parameter to obtain
+    an HTML rendering or summary view of available data before pulling the full report.
+    Exact preview parameters are not separately documented and require reconciliation.
+- aid: clearvin:account-authentication-api
+  name: Account Authentication API
+  tags:
+  - Authentication
+  - Account
+  - Token
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.clearvin.com/en/api-subscribers/
+  baseURL: https://www.clearvin.com/rest/vendor
+  properties:
+  - url: https://www.clearvin.com/en/api-subscribers/
+    type: Documentation
+  - url: openapi/clearvin-openapi.yml
+    type: OpenAPI
+  - url: collections/clearvin.postman_collection.json
+    type: PostmanCollection
+  - url: collections/clearvin.opencollection.json
+    type: OpenCollection
+  description: Exchanges account email and password for a JWT bearer token (valid 120
+    minutes) used to authorize report requests. Requests must originate from a registered
+    IP address. Account credit balance is managed through the ClearVIN account and
+    is not exposed via a separately documented public endpoint.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/clearvin
+- type: Website
+  url: https://www.clearvin.com/
+- type: Documentation
+  url: https://www.clearvin.com/en/api-subscribers/
+- type: Plans
+  url: plans/clearvin-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/clearvin-rate-limits.yml
+- type: FinOps
+  url: finops/clearvin-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

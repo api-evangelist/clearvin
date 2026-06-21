@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ClearVIN Vendor API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and obtain a bearer token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.clearvin.com/rest/vendor/login",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Exchanges account email and password for a JWT bearer token valid for 120 minutes. The request must originate from an IP address registered with ClearVIN."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a vehicle report by VIN.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.clearvin.com/rest/vendor/report",
+            "params": [
+              {
+                "name": "vin",
+                "value": "5UXFA13544LU21050",
+                "type": "query",
+                "description": "The 17-character Vehicle Identification Number to look up."
+              },
+              {
+                "name": "format",
+                "value": "html",
+                "type": "query",
+                "description": "Set to html for an HTML rendering; omit for JSON (default)."
+              }
+            ]
+          },
+          "docs": "Returns a vehicle report for the supplied VIN. Depending on the account subscription the report contains VIN decode specifications, NMVTIS title and history data, and/or market valuation. Requires a valid bearer token from /rest/vendor/login."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
