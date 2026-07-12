@@ -105,6 +105,10 @@ apis:
     IP address. Account credit balance is managed through the ClearVIN account and
     is not exposed via a separately documented public endpoint.
 common:
+- type: DomainSecurity
+  url: security/clearvin-domain-security.yml
+- type: Authentication
+  url: authentication/clearvin-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/clearvin
 - type: Website

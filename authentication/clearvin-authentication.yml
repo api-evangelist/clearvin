@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/clearvin-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: 'JWT obtained from /rest/vendor/login, sent as "Authorization: Bearer {token}".
+    Tokens expire after 120 minutes.'
+  sources:
+  - openapi/clearvin-openapi.yml
