@@ -105,6 +105,8 @@ apis:
     IP address. Account credit balance is managed through the ClearVIN account and
     is not exposed via a separately documented public endpoint.
 common:
+- type: AgenticAccess
+  url: agentic-access/clearvin-agentic-access.yml
 - type: DomainSecurity
   url: security/clearvin-domain-security.yml
 - type: Authentication
