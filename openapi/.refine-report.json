@@ -1,0 +1,16 @@
+{
+  "provider": "clearvin",
+  "sources": [
+    "clearvin-authentication-api-openapi.yml",
+    "clearvin-report-api-openapi.yml"
+  ],
+  "outputs": [
+    "clearvin-authentication-api-openapi.yml",
+    "clearvin-report-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
