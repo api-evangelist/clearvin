@@ -1,0 +1,144 @@
+{
+  "item": [
+    {
+      "id": "3496089b-ec4c-4364-b639-385d3be7f584",
+      "name": "Report",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "857167b9-b69e-4c60-b531-0579712ac413",
+          "name": "Retrieve a vehicle report by VIN.",
+          "request": {
+            "name": "Retrieve a vehicle report by VIN.",
+            "description": {
+              "content": "Returns a vehicle report for the supplied VIN. Depending on the account subscription the report contains VIN decode specifications, NMVTIS title and history data, and / or market valuation. By default the response is JSON; pass format=html to receive an HTML rendering of the report. Requires a valid bearer token from /rest/vendor/login.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rest",
+                "vendor",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>",
+                  "description": "(Required) The 17-character Vehicle Identification Number to look up."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Response format. Omit for JSON (default) or set to html to receive an HTML rendering of the report."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d564aac-c770-4ceb-934d-cbf902c73773",
+              "name": "Report result for the requested VIN.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rest",
+                    "vendor",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vin",
+                      "value": "5UXFA13544LU21050"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"message\": \"string\",\n  \"result\": {\n    \"id\": \"string\",\n    \"vin\": \"string\",\n    \"report\": {\n      \"decoder\": {\n        \"key_0\": 7992.334431451455,\n        \"key_1\": 2401\n      },\n      \"nmvtis\": {\n        \"key_0\": 3176.4718021798253,\n        \"key_1\": true\n      },\n      \"valuation\": {\n        \"key_0\": 4198,\n        \"key_1\": true\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.clearvin.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c158f88a-0784-415b-90f6-ad0951a9afb1",
+    "name": "ClearVIN Vendor Authentication Report API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ClearVIN's VIN decoding and vehicle history data. Clients exchange account credentials for a JWT bearer token at /rest/vendor/login, then request vehicle data by VIN from /rest/vendor/report. A single report endpoint returns VIN decode specifications, NMVTIS title and history data, and market valuation depending on the account subscription. Requests must originate from an IP address registered with ClearVIN. Documented endpoint paths are limited to login and report; additional product surfaces are served through the report endpoint.\n\nContact Support:\n Name: ClearVIN",
+      "type": "text/plain"
+    }
+  }
+}

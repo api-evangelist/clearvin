@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ClearVIN Vendor Authentication Report API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a vehicle report by VIN.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.clearvin.com/rest/vendor/report",
+            "params": [
+              {
+                "name": "vin",
+                "value": "5UXFA13544LU21050",
+                "type": "query",
+                "description": "The 17-character Vehicle Identification Number to look up."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Omit for JSON (default) or set to html to receive an HTML rendering of the report."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a vehicle report for the supplied VIN. Depending on the account subscription the report contains VIN decode specifications, NMVTIS title and history data, and / or market valuation. By default the response is JSON; pass format=html to receive an HTML rendering of the report. Requires a valid bearer token from /rest/vendor/login."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

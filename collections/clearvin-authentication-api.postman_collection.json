@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "ab16ea75-efd3-42cd-9a61-fa6eb17eb71b",
+      "name": "Authentication",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8063269c-1900-42b1-968b-398645647a7e",
+          "name": "Authenticate and obtain a bearer token.",
+          "request": {
+            "name": "Authenticate and obtain a bearer token.",
+            "description": {
+              "content": "Exchanges account email and password for a JWT bearer token that is valid for 120 minutes. The request must originate from an IP address registered with ClearVIN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rest",
+                "vendor",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<password>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc7ff5f3-8d08-43ea-80aa-06022a237642",
+              "name": "Authentication result with token on success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rest",
+                    "vendor",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.clearvin.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "125d0fd0-468f-4d24-8494-839568989efa",
+    "name": "ClearVIN Vendor Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ClearVIN's VIN decoding and vehicle history data. Clients exchange account credentials for a JWT bearer token at /rest/vendor/login, then request vehicle data by VIN from /rest/vendor/report. A single report endpoint returns VIN decode specifications, NMVTIS title and history data, and market valuation depending on the account subscription. Requests must originate from an IP address registered with ClearVIN. Documented endpoint paths are limited to login and report; additional product surfaces are served through the report endpoint.\n\nContact Support:\n Name: ClearVIN",
+      "type": "text/plain"
+    }
+  }
+}

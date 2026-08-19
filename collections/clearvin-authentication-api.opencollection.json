@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ClearVIN Vendor Authentication API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and obtain a bearer token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.clearvin.com/rest/vendor/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges account email and password for a JWT bearer token that is valid for 120 minutes. The request must originate from an IP address registered with ClearVIN."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
