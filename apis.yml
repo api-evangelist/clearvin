@@ -7,6 +7,18 @@ description: ClearVIN is a vehicle-history and VIN data provider and an approved
   specification data points and returns full vehicle history reports - title, junk
   / salvage / total-loss records, odometer events, and market valuation - sourced
   directly from government and industry data, covering model years 1981 to present.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
