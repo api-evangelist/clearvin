@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: ClearVIN Vendor Authentication Report API
-  description: REST API for ClearVIN's VIN decoding and vehicle history data. Clients exchange account credentials for a JWT bearer token at /rest/vendor/login, then request vehicle data by VIN from /rest/vendor/report. A single report endpoint returns VIN decode specifications, NMVTIS title and history data, and market valuation depending on the account subscription. Requests must originate from an IP address registered with ClearVIN. Documented endpoint paths are limited to login and report; additional product surfaces are served through the report endpoint.
+  title: ClearVIN Vendor Report API
+  description: REST API for ClearVIN's VIN decoding and vehicle history data.
   termsOfService: https://www.clearvin.com/en/terms-of-service/
   contact:
     name: ClearVIN
@@ -18,7 +18,7 @@ paths:
       operationId: getReport
       tags:
       - Report
-      summary: Retrieve a vehicle report by VIN.
+      summary: Retrieve a vehicle report by VIN
       description: Returns a vehicle report for the supplied VIN. Depending on the account subscription the report contains VIN decode specifications, NMVTIS title and history data, and / or market valuation. By default the response is JSON; pass format=html to receive an HTML rendering of the report. Requires a valid bearer token from /rest/vendor/login.
       security:
       - bearerAuth: []
@@ -51,6 +51,22 @@ paths:
                 description: HTML rendering of the report when format=html.
 components:
   schemas:
+    Report:
+      type: object
+      description: Vehicle report payload. Field structure varies by subscription and data availability; the decoder, history, and valuation sections below are representative and require reconciliation against a live account response for exact shapes.
+      properties:
+        decoder:
+          type: object
+          description: VIN decode output - up to 150 specification parameters such as year, make, model, trim, engine, body, dimensions, standard features, and recall data.
+          additionalProperties: true
+        nmvtis:
+          type: object
+          description: NMVTIS title and history data - DMV title records, brand codes, junk / salvage / total-loss events, insurance claims, and odometer / mileage history.
+          additionalProperties: true
+        valuation:
+          type: object
+          description: Market valuation data - wholesale, retail, and trade-in values across condition categories, with mileage adjustments.
+          additionalProperties: true
     ReportResult:
       type: object
       properties:
@@ -76,22 +92,6 @@ components:
           description: Error detail, present when status is "error".
         result:
           $ref: '#/components/schemas/ReportResult'
-    Report:
-      type: object
-      description: Vehicle report payload. Field structure varies by subscription and data availability; the decoder, history, and valuation sections below are representative and require reconciliation against a live account response for exact shapes.
-      properties:
-        decoder:
-          type: object
-          description: VIN decode output - up to 150 specification parameters such as year, make, model, trim, engine, body, dimensions, standard features, and recall data.
-          additionalProperties: true
-        nmvtis:
-          type: object
-          description: NMVTIS title and history data - DMV title records, brand codes, junk / salvage / total-loss events, insurance claims, and odometer / mileage history.
-          additionalProperties: true
-        valuation:
-          type: object
-          description: Market valuation data - wholesale, retail, and trade-in values across condition categories, with mileage adjustments.
-          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

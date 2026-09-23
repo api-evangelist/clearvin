@@ -1,8 +1,7 @@
 {
   "provider": "clearvin",
   "sources": [
-    "clearvin-authentication-api-openapi.yml",
-    "clearvin-report-api-openapi.yml"
+    "_original/clearvin-openapi.yml"
   ],
   "outputs": [
     "clearvin-authentication-api-openapi.yml",
@@ -11,6 +10,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "clearvin-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "clearvin-openapi.yml: declared missing tag: Authentication",
+    "clearvin-openapi.yml: declared missing tag: Report",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "clearvin-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clearvin-report-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
