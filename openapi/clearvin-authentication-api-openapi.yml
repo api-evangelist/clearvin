@@ -35,20 +35,6 @@ paths:
                 $ref: '#/components/schemas/LoginResponse'
 components:
   schemas:
-    LoginRequest:
-      type: object
-      required:
-      - email
-      - password
-      properties:
-        email:
-          type: string
-          format: email
-          description: Account email address.
-        password:
-          type: string
-          format: password
-          description: Account password.
     LoginResponse:
       type: object
       properties:
@@ -64,6 +50,20 @@ components:
         token:
           type: string
           description: JWT bearer token, present when status is "ok". Valid 120 minutes.
+    LoginRequest:
+      type: object
+      required:
+      - email
+      - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: Account email address.
+        password:
+          type: string
+          format: password
+          description: Account password.
   securitySchemes:
     bearerAuth:
       type: http

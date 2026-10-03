@@ -51,17 +51,6 @@ paths:
                 description: HTML rendering of the report when format=html.
 components:
   schemas:
-    ReportResult:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ClearVIN report identifier.
-        vin:
-          type: string
-          description: The VIN the report was generated for.
-        report:
-          $ref: '#/components/schemas/Report'
     Report:
       type: object
       description: Vehicle report payload. Field structure varies by subscription and data availability; the decoder, history, and valuation sections below are representative and require reconciliation against a live account response for exact shapes.
@@ -78,6 +67,17 @@ components:
           type: object
           description: Market valuation data - wholesale, retail, and trade-in values across condition categories, with mileage adjustments.
           additionalProperties: true
+    ReportResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ClearVIN report identifier.
+        vin:
+          type: string
+          description: The VIN the report was generated for.
+        report:
+          $ref: '#/components/schemas/Report'
     ReportResponse:
       type: object
       properties:
