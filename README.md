@@ -1,4 +1,4 @@
-# ClearVIN (clearvin)
+# ClearVIN
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,113 +66,116 @@
 
 ClearVIN is a vehicle-history and VIN data provider and an approved NMVTIS data provider. Its REST API decodes North American (U.S. and Canada) VINs into 100+ specification data points and returns full vehicle history reports - title, junk / salvage / total-loss records, odometer events, and market valuation - sourced directly from government and industry data, covering model years 1981 to present.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/clearvin/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/clearvin/refs/heads/main/apis.yml)
+**Areas:** VIN · Vehicle History · Automotive · NMVTIS · Vehicle Data
 
-## Tags
+## ClearVIN on APIs.io
 
-- VIN
-- Vehicle History
-- Automotive
-- NMVTIS
-- Vehicle Data
+Everything profiled for ClearVIN is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/clearvin/](https://apis.io/providers/clearvin/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (2)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [ClearVIN Authentication API](https://apis.io/apis/clearvin/clearvin-authentication-api/) — The Authentication API from ClearVIN — 1 operation(s) for authentication.
+- [ClearVIN Report API](https://apis.io/apis/clearvin/clearvin-report-api/) — The Report API from ClearVIN — 1 operation(s) for report.
 
-## APIs
+### Published properties
 
-### VIN Decode API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Breaks a North American VIN into 100+ data points - year, make, model, trim, engine, technical VIN specs, standard features, and recall data - via ClearVIN's proprietary decoder over the shared report endpoint.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.clearvin.com/en/api-subscribers/vin-decode-api/](https://www.clearvin.com/en/api-subscribers/vin-decode-api/)
-- **Base URL:** `https://www.clearvin.com/rest/vendor`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Clearvin Agentic Access](https://apis.io/agentic-access/clearvin/clearvin-agentic-access/)
 
-- VIN
-- Decode
-- Vehicle Specifications
+#### Collections (3)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://www.clearvin.com/en/api-subscribers/vin-decode-api/)
-- [OpenAPI](openapi/clearvin-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/clearvin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/clearvin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [ClearVIN Vendor API](https://apis.io/collections/clearvin/open-clearvin/)
+- [ClearVIN Vendor Authentication API](https://apis.io/collections/clearvin/open-clearvin-authentication-api/)
+- [ClearVIN Vendor Authentication Report API](https://apis.io/collections/clearvin/open-clearvin-report-api/)
 
-### Vehicle History Report API
+#### Security (2)
 
-Full vehicle history report from the NMVTIS government database and industry sources - DMV title records, brand codes, junk / salvage / total-loss events, insurance claims, odometer / mileage history, and market valuation - returned by VIN from the report endpoint as JSON or HTML.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://www.clearvin.com/en/api-subscribers/nmvtis-history-api/](https://www.clearvin.com/en/api-subscribers/nmvtis-history-api/)
-- **Base URL:** `https://www.clearvin.com/rest/vendor`
+- [Clearvin Authentication](https://apis.io/security/clearvin/clearvin-authentication/)
+- [Clearvin Domain Security](https://apis.io/security/clearvin/clearvin-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Vehicle History
-- NMVTIS
-- Title
+Published plans, tiers and prices.
 
-#### Properties
+- [Clearvin Plans Pricing](https://apis.io/plans/clearvin/clearvin-plans-pricing/)
 
-- [Documentation](https://www.clearvin.com/en/api-subscribers/nmvtis-history-api/)
-- [OpenAPI](openapi/clearvin-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/clearvin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/clearvin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Report Preview API
+Published request limits.
 
-Retrieves a report by VIN with the format query parameter to obtain an HTML rendering or summary view of available data before pulling the full report. Exact preview parameters are not separately documented and require reconciliation.
+- [Clearvin Rate Limits](https://apis.io/rate-limits/clearvin/clearvin-rate-limits/)
 
-- **Human URL:** [https://www.clearvin.com/en/api-subscribers/](https://www.clearvin.com/en/api-subscribers/)
-- **Base URL:** `https://www.clearvin.com/rest/vendor`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Preview
-- Sample
-- Report
+- [Clearvin Finops](https://apis.io/finops/clearvin/clearvin-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://www.clearvin.com/en/api-subscribers/)
-- [OpenAPI](openapi/clearvin-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/clearvin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/clearvin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Account Authentication API
-
-Exchanges account email and password for a JWT bearer token (valid 120 minutes) used to authorize report requests. Requests must originate from a registered IP address. Account credit balance is managed through the ClearVIN account and is not exposed via a separately documented public endpoint.
-
-- **Human URL:** [https://www.clearvin.com/en/api-subscribers/](https://www.clearvin.com/en/api-subscribers/)
-- **Base URL:** `https://www.clearvin.com/rest/vendor`
-
-#### Tags
-
-- Authentication
-- Account
-- Token
-
-#### Properties
-
-- [Documentation](https://www.clearvin.com/en/api-subscribers/)
-- [OpenAPI](openapi/clearvin-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/clearvin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/clearvin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/clearvin)
 - [Website](https://www.clearvin.com/)
 - [Documentation](https://www.clearvin.com/en/api-subscribers/)
-- [Plans](plans/clearvin-plans-pricing.yml)
-- [Rate Limits](rate-limits/clearvin-rate-limits.yml)
-- [Fin Ops](finops/clearvin-finops.yml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 24.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 22.6 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/clearvin/](https://apis.io/providers/clearvin/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ClearVIN: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/clearvin/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
